@@ -10,11 +10,15 @@ declare global {
   }
 }
 
-export const Aunthenticate = async(req: Request, res: Response, next: NextFunction) =>{
-    const validate = await ValidateSignature(req);
-    if(validate){
-        next()
-    }else{
-        return res.json({"message":"user not Authorizes"})
-    }
-}
+export const Aunthenticate = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const validate = await ValidateSignature(req);
+  if (validate) {
+    next();
+  } else {
+    return res.json({ message: "user not Authorizes" });
+  }
+};

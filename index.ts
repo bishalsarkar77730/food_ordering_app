@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
+import path from "path";
 
 // Import All Routes
 import { AdminRoute, VandorRoute } from "./Backend/routes";
@@ -18,6 +19,7 @@ mongoose
   })
   .catch((err) => console.log("error" + err));
 
+app.use("/images", express.static(path.join(__dirname, "images")));
 // Use all the Routes
 app.use("/admin", AdminRoute);
 app.use("/vandor", VandorRoute);
