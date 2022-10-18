@@ -1,3 +1,4 @@
 export * from "./AdminRoute";
 export * from "./VandorRoutes";
-export * from "./ShoppingRoute"
+export * from "./CustomerRoute";
+export * from "./ShoppingRoute";

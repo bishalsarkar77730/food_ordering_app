@@ -1,5 +1,11 @@
 import express, { Request, Response, NextFunction } from "express";
-import { GetFoodAvailability, GetFoodIn30Min, GetTopRestaurants, RestaurantById, SearchFoods } from "../controllers/ShoppingController";
+import {
+  GetFoodAvailability,
+  GetFoodIn30Min,
+  GetTopRestaurants,
+  RestaurantById,
+  SearchFoods,
+} from "../controllers";
 
 const router = express.Router();
 
