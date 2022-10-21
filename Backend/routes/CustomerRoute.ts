@@ -7,6 +7,7 @@ import {
   GetCustomerProfile,
   RequestOtp,
 } from "../controllers";
+import { Aunthenticate } from "../middlewares";
 
 const router = express.Router();
 
@@ -16,6 +17,7 @@ router.post("/signup", CustomerSignup);
 router.post("/login", CustomerLogin);
 
 //  Below all are Authenticated Routes
+router.use(Aunthenticate)
 // Verify Customer Account
 router.patch("/verify", CustomerVerify);
 // OTP/ Requesting OTP
