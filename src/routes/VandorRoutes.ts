@@ -1,8 +1,11 @@
 import express, { Request, Response, NextFunction } from "express";
 import {
   AddFood,
+  GetCurrentDetails,
+  GetCurrentOrders,
   GetFood,
   GetVandorProfile,
+  ProcessOrders,
   UpdateVandorCoverImage,
   UpdateVandorProfile,
   UpdateVandorService,
@@ -36,5 +39,10 @@ router.patch("/service", UpdateVandorService);
 router.patch("/coverimage", images, UpdateVandorCoverImage);
 router.post("/food", images, AddFood);
 router.get("/foods", GetFood);
+
+// orders
+router.get('/orders', GetCurrentOrders);
+router.put('/order/:id/process', ProcessOrders);
+router.get('/order/:id', GetCurrentDetails)
 
 export { router as VandorRoute };
