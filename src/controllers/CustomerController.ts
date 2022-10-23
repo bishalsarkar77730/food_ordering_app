@@ -15,7 +15,7 @@ import {
   onRequestOTP,
   validatePasswors,
 } from "../utility";
-import { Customer, Food, Order } from "../models";
+import { Customer, Food, Offer, Order } from "../models";
 
 export const CustomerSignup = async (
   req: Request,
@@ -373,3 +373,48 @@ export const GetOrderById = async (
   }
   return res.status(404).json({ message: "error getting order" });
 };
+
+export const VerifyOffer = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const offerId = req.params.id;
+  const customer = req.user;
+  if (customer) {
+    const appliedOffer = await Offer.findById(offerId);
+    if (appliedOffer) {
+      if (appliedOffer.promoType === "USER") {
+        // only can apply once per User
+      } else {
+        if (appliedOffer.isActive) {
+          return res
+            .status(200)
+            .json({ message: "Offer is Valid", Offer: appliedOffer });
+        }
+      }
+    }
+  }
+  return res.status(404).json({ message: "error Verifying offer" });
+};
+
+export const CreatePayment = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const customer = req.user;
+  const { amount, paymentMode, offerId} = req.body;
+  let payableAmount = Number(amount);
+  if(offerId){
+    const appliedOffer = await Offer.findById(offerId);
+    if(appliedOffer){
+      if(appliedOffer.isActive){
+        payableAmount=(payableAmount-appliedOffer.offerAmount)
+      }
+    }
+  }
+  //  Perform Payment gateway Charge API call
+  //  Create record on Transaction
+  // return transaction ID
+}
