@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { CreateVandorInput } from "../dto";
-import { Transaction, Vandor } from "../models";
+import { DeliveryUser, Transaction, Vandor } from "../models";
 import { GenerateSalt, GenratePassword } from "../utility";
 
 export const FindVandor = async (id: string | undefined, email?: string) => {
@@ -56,7 +56,7 @@ export const CreateVandor = async (
     coverImages: [],
     foods: [],
     lat: 0,
-    lng: 0
+    lng: 0,
   });
 
   return res.json(CreateVandor);
@@ -93,21 +93,50 @@ export const GetTransactions = async (
   next: NextFunction
 ) => {
   const transaction = await Transaction.find();
-  if(transaction){
-    return res.status(200).json(transaction)
+  if (transaction) {
+    return res.status(200).json(transaction);
   }
   return res.json({ message: "Transaction not available" });
-}
+};
 
 export const GetTransactionsById = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const Id = req.params.id
+  const Id = req.params.id;
   const transaction = await Transaction.findById(Id);
   if (transaction) {
     return res.status(200).json(transaction);
   }
-  return res.json({ message: "Transaction not available" });
+  return res.status(400).json({ message: "Transaction not available" });
+};
+
+export const VerifyDeliveryUSer = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { _id, status } = req.body;
+  if (_id) {
+    const profile = await DeliveryUser.findById(_id);
+    if (profile) {
+      profile.verified = status;
+      const result = await profile.save();
+      return res.status(200).json(result);
+    }
+  }
+  return res.status(400).json({ message: "Verification Failed" });
+};
+
+export const GetDeliveryUSers = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const deliveryUser = await DeliveryUser.find();
+  if (deliveryUser) {
+    return res.status(200).json(deliveryUser);
+  }
+  return res.status(400).json({ message: "Verification Failed" });
 };

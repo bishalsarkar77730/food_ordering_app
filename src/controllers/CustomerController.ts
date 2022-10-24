@@ -16,7 +16,15 @@ import {
   onRequestOTP,
   validatePasswors,
 } from "../utility";
-import { Customer, Food, Offer, Order, Transaction, Vandor } from "../models";
+import {
+  Customer,
+  DeliveryUser,
+  Food,
+  Offer,
+  Order,
+  Transaction,
+  Vandor,
+} from "../models";
 
 export const CustomerSignup = async (
   req: Request,
@@ -205,6 +213,7 @@ export const EditCustomerProfile = async (
       res.status(200).json(result);
     }
   }
+  return res.status(400).json({ message: "Error with Editing the data" });
 };
 
 // Cart Section
@@ -323,18 +332,31 @@ export const CreatePayment = async (
 
 // Delivery Notification
 
-const assignOrderForDelivery = async(orderId: string, vendorId: string) =>{
+const assignOrderForDelivery = async (orderId: string, vendorId: string) => {
   // Find The vendor
   const vendor = await Vandor.findById(vendorId);
-  if(vendor){
+  if (vendor) {
     const areaCode = vendor.pincode;
     const vendorLat = vendor.lat;
     const vendorLng = vendor.lng;
     //  Find the Available Delivery Person
-    //  Check the nearest Delivery person and assign the order
+    const deliveryPerson = await DeliveryUser.find({
+      pincode: areaCode,
+      verified: true,
+      isAvailable: true,
+    });
+    if (deliveryPerson) {
+      //  Check the nearest Delivery person and assign the order
+      const currentOrder = await Order.findById(orderId);
+      if (currentOrder) {
+        //  Update DeliveryID
+        currentOrder.deliveryId = deliveryPerson[0]._id;
+        await currentOrder.save();
+        // Notify to vendor for received New Order Using firebase Push Notification
+      }
+    }
   }
-  //  Update DeliveryID
-}
+};
 
 // Order Section
 
