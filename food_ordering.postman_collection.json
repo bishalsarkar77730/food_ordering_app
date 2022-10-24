@@ -1,0 +1,802 @@
+{
+	"info": {
+		"_postman_id": "216fae0e-9be2-4f6a-95c4-e4d3b61057b7",
+		"name": "food_ordering",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17549334"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Admin-Create vandor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"second Restaurent\",\r\n    \"OwnerName\": \"Mr. ABC\",\r\n    \"foodType\": [\"non-veg\", \"veg\"],\r\n    \"pincode\": \"400050\",\r\n    \"address\": \"Bandra\",\r\n    \"phone\": \"8349889244\",\r\n    \"email\": \"test1@test.com\",\r\n    \"password\": \"test123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/admin/vandor",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"admin",
+								"vandor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin-Get Vandors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/admin/vandors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"admin",
+								"vandors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin-Getvandors by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/admin/vandor/633363f198d26a81eb8c36c5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"admin",
+								"vandor",
+								"633363f198d26a81eb8c36c5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Vandor",
+			"item": [
+				{
+					"name": "Vandor-Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"test@test.com\",\r\n    \"password\": \"test123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/vandor/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"vandor",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vandor-Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/vandor/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"vandor",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vandor-Update Profile",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"foodType\":[\r\n        \"veg\"\r\n    ],\r\n    \"name\":\"super cool Resturant\",\r\n    \"address\": \"Mumbai India\",\r\n    \"phone\": \"9340798720\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/vandor/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"vandor",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vandor-UpdateServices",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/vandor/service",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"vandor",
+								"service"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vandor-AddFood",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Burger Big From Third",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Burger With Double cheese",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "break-fast",
+									"type": "text"
+								},
+								{
+									"key": "foodtype",
+									"value": "veg",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "250",
+									"type": "text"
+								},
+								{
+									"key": "readyTime",
+									"value": "30",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": "/H:/3.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/vandor/food",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"vandor",
+								"food"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vandor-GetFoods",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/vandor/foods",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"vandor",
+								"foods"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vandor-Update cover image",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "images",
+									"type": "file",
+									"src": "/H:/baner.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/vandor/coverimage",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"vandor",
+								"coverimage"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzM1ZGE2ZDEzNjg1YzNjZmY4MzkxNWQiLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJmb29kVHlwZSI6WyJub24tdmVnIiwidmVnIl0sIm5hbWUiOiJmaXJzdCBSZXN0YXVyZW50IiwiaWF0IjoxNjY1MTUyODY4LCJleHAiOjE2NjUyMzkyNjh9.qL_1s7VB0srfRNNf0-ujoGP9vt0Ome8DxHzgy7mOAFw",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Shopping",
+			"item": [
+				{
+					"name": "Foods-Availability",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/400050",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"400050"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Foods- Top Resturants",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/top-restaurants/400050",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"top-restaurants",
+								"400050"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Foods-in 30 min",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/foods-in-30-min/400050",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"foods-in-30-min",
+								"400050"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Foods-Search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/search/400050",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"search",
+								"400050"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Foods- Resturant by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/restaurant/6335da6d13685c3cff83915d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"restaurant",
+								"6335da6d13685c3cff83915d"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzM1ZGE2ZDEzNjg1YzNjZmY4MzkxNWQiLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJmb29kVHlwZSI6WyJub24tdmVnIiwidmVnIl0sIm5hbWUiOiJmaXJzdCBSZXN0YXVyZW50IiwiaWF0IjoxNjY1MTUyODY4LCJleHAiOjE2NjUyMzkyNjh9.qL_1s7VB0srfRNNf0-ujoGP9vt0Ome8DxHzgy7mOAFw",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Orders",
+					"item": [
+						{
+							"name": "Customer- Create order",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzUyMzJmY2MzN2MxYmRiNGIzZWRiOTciLCJlbWFpbCI6InRlc3QxQHRlc3QuY29tIiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTY2NjM2MzgyNywiZXhwIjoxNjY2NDUwMjI3fQ.VKDM77lFZzO6z45XGsL36gEGsBEwsbd-FjhxryZ4Mgw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n    {\r\n        \"_id\":\"6335dc1600cb733412b49003\",\r\n        \"unit\":3\r\n    }\r\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/customer/create-order",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"customer",
+										"create-order"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all orders",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzUyMzJmY2MzN2MxYmRiNGIzZWRiOTciLCJlbWFpbCI6InRlc3QxQHRlc3QuY29tIiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTY2NjM2MzgyNywiZXhwIjoxNjY2NDUwMjI3fQ.VKDM77lFZzO6z45XGsL36gEGsBEwsbd-FjhxryZ4Mgw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/customer/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"customer",
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetOredr by Id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzUyMzJmY2MzN2MxYmRiNGIzZWRiOTciLCJlbWFpbCI6InRlc3QxQHRlc3QuY29tIiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTY2NjM2MzgyNywiZXhwIjoxNjY2NDUwMjI3fQ.VKDM77lFZzO6z45XGsL36gEGsBEwsbd-FjhxryZ4Mgw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/customer/order/6352b226c6c66dc173e86f02",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"customer",
+										"order",
+										"6352b226c6c66dc173e86f02"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "cart",
+					"item": [
+						{
+							"name": "New Request",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"_id\": \"6335dc1600cb733412b49003\",\r\n    \"unit\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/customer/cart",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"customer",
+										"cart"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzUyMzJmY2MzN2MxYmRiNGIzZWRiOTciLCJlbWFpbCI6InRlc3QxQHRlc3QuY29tIiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTY2NjQyMDMzNCwiZXhwIjoxNjY2NTA2NzM0fQ.-oaG-5kKVIU2fJUwh7g00Y0PFNoN1WFPXUq7_7o_3bs",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "SignupCustomer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"test1@test.com\",\r\n    \"password\":\"123456\",\r\n    \"phone\":\"7773015690\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/customer/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"customer",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verifyCustomer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzUyMzJmY2MzN2MxYmRiNGIzZWRiOTciLCJlbWFpbCI6InRlc3QxQHRlc3QuY29tIiwidmVyaWZpZWQiOmZhbHNlLCJpYXQiOjE2NjYzMzEzOTIsImV4cCI6MTY2NjQxNzc5Mn0.8THl3PcEjrxe_pYmH1ED1EHn_DNHlCkn5w7-wtduSOA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"otp\": \"473324\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/customer/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"customer",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login Customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"test1@test.com\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/customer/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"customer",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCustomerProfile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzUyMzJmY2MzN2MxYmRiNGIzZWRiOTciLCJlbWFpbCI6InRlc3QxQHRlc3QuY29tIiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTY2NjMzMjU1NywiZXhwIjoxNjY2NDE4OTU3fQ.NF4hidK-at21Huml7JP_tTwh-Thun8v8f6IG2LW7FyA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/customer/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"customer",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditCustomer Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzUyMzJmY2MzN2MxYmRiNGIzZWRiOTciLCJlbWFpbCI6InRlc3QxQHRlc3QuY29tIiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTY2NjMzMjU1NywiZXhwIjoxNjY2NDE4OTU3fQ.NF4hidK-at21Huml7JP_tTwh-Thun8v8f6IG2LW7FyA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\":\"Bishal\",\r\n    \"lastName\":\"Sarkar\",\r\n    \"address\":\"Bhilai, India\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/customer/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"customer",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
